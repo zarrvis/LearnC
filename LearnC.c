@@ -1,72 +1,83 @@
 #include<stdio.h>
+#include<string.h>
 
-float luas_lingkaran(int jari2);
-int luas_persegi(int sisi1,int sisi2);
-float luas_segi3(int alas, int tinggi);
+float luas_lingkaran(float pi, int jari2); //Memanggil fungsi menghitung luas lingkaran
+float kel_lingkaran(float pi, int jari2); //Memanggil fungsi menghitung keliling lingkaran
 
 void main()
 {
 
 while(1)
 {
-    int c, jari2, sisi1, sisi2, alas, tinggi;
+    //Variabel
+    int c, jari2, i, j, bil;
+    char str[100], temp;
+    float pi = 3.14;
 
-    printf("\n\t---Select your choice---------\n");
-    printf("\n\t1) MENGHITUNG LUAS LINGKARAN\n\t");
-    printf("\n\t2) MENGHITUNG LUAS PERSEGI\n\t");
-    printf("\n\t3) MENGHITUNG LUAS SEGITIGA\n\t");
-    printf("\n\t4) MEMBALIKKAN KATA ATAU KALIMAT\n\t");
-    printf("\n\t5). EXIT");
+    //Pilihan menu
+    printf("\n\t---SELECT YOUR CHOICE---------\n");
+    printf("\n\t1) MENGHITUNG LUAS $ KELILING LINGKARAN\n\t");
+    printf("\n\t2) MEMBALIKKAN KATA \n\t");
+    printf("\n\t3) MENENTUKAN BILANGAN GENAP ATAU GANJIL \n\t");
+    printf("\n\t4) EXIT");
     printf("\n\t-------------------------------\n");
-    printf("\nEnter your choice: ");
+    printf("\nENTER YOUR CHOICE : ");
     scanf("%d", &c);
     printf("\n");
 
     switch (c)
     {
         case 1:
-            /*luas lingkaran*/
+            /*Luas dan keliling lingkaran*/
 
             printf("Masukkan ukuran jari-jari lingkaran anda = ");
             scanf("%d", &jari2);
 
-            printf("\nLuas lingkaran anda adalah = %.2f\n", luas_lingkaran(jari2));
+            printf("\nLuas lingkaran anda adalah = %.2f\n", luas_lingkaran(pi, jari2));
+            printf("\nKeliling lingkaran anda adalah = %.2f\n", kel_lingkaran(pi, jari2));
             break;
 
         case 2:
-            /*luas persegi*/
+            /* Membalikkan kata */
 
-              /*simpan sisi pertama*/
-                printf("Masukkan ukuran sisi pertama = ");
-                scanf("%d", &sisi1);
+            printf("Masukkan kata yang ingin dibalik : ");
 
-              /*simpan sisi kedua*/
-                printf("\nMasukkan ukuran sisi kedua = ");
-                scanf("%d", &sisi2);
+            scanf("%s",&str);
 
-                printf("\nLuas nya adalah = %d\n", luas_persegi(sisi1, sisi2));
-                break;
+            i=0;
+            j=0;
+            j = strlen(str) - 1;
+
+            while(i<j)
+            {
+                temp = str[i];
+                str[i] = str[j];
+                str[j] = temp;
+                i++;
+                j--;
+            }
+
+            printf("\nKata anda setelah dibalik : %s\n", str);
+            break;
 
         case 3:
-            /*luas segitiga*/
+            //Mengecek bilangan ganjil dan genap
+            printf("Masukkan bilangan yang akan di cek = ");
+            scanf("%d", &bil);
 
-            printf("Masukkan ukuran alas segitiga = ");
-            scanf("%d", &alas);
-
-            printf("\nMasukkan ukuran tinggi segitiga = ");
-            scanf("%d", &tinggi);
-
-            printf("\nLuas nya adalah = %.2f\n", luas_segi3(alas, tinggi));
+            if(bil % 2 == 0)
+                printf("\nBilangan yang anda masukkan adalah bilangan genap\n");
+            else
+                printf("\nBilangan yang anda masukkan adalah bilangan ganjil\n");
             break;
 
         case 4:
-            break;
-
-        case 5:
+            //exit program
             printf("THANKS FOR USING THIS SOFTWARE");
             exit(1);
             break;
 
+            //fungsi jika memilih diluar menu
         default :
             printf("YOUR CHOICE IS WRONG PLEASE TRY AGAIN");
             break;
@@ -76,21 +87,16 @@ while(1)
 
 }
 
-float luas_lingkaran(int jari2)
+//Fungsi menghitung luas lingkaran
+float luas_lingkaran(float pi, int jari2)
 {
-    float pi = 3.14;
     return pi * jari2 * jari2;
 }
 
-int luas_persegi(int sisi1,int sisi2)
+//Fungsi menghitung keliling lingkaran
+float kel_lingkaran(float pi, int jari2)
 {
-    return sisi1 * sisi2;
-}
-
-float luas_segi3(int alas, int tinggi)
-{
-    float r = 0.5;
-    return r * alas * tinggi;
+    return 2 * pi * jari2;
 }
 
 
